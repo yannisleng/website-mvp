@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
+import { api } from "~/utils/api";
 
 const CYCLogo: React.FC = () => {
   return (
@@ -37,6 +39,19 @@ const SearchBar: React.FC = () => {
         />
       )}
     </div>
+  );
+};
+
+const LoginButton: React.FC = () => {
+  const { data: sessionData } = useSession();
+  
+  return (
+    <img
+      src={sessionData?.user?.image ?? "/icons/login.svg"}
+      alt={sessionData ? "Profile Picture" : "Login Icon"}
+      className="ml-5 h-7 w-7 cursor-pointer rounded-full"
+      onClick={sessionData ? () => void signOut() : () => void signIn()}
+    />
   );
 };
 
@@ -85,11 +100,7 @@ export default function Header() {
       </div>
       <div className="flex">
         <SearchBar />
-        <img
-          src="/icons/login.svg"
-          alt="Login Icon"
-          className="ml-5 h-7 w-7 cursor-pointer"
-        />
+        <LoginButton />
       </div>
     </div>
   );
