@@ -6,7 +6,8 @@ export default function Footer() {
       className="abosolute bottom-0 flex w-full 
     bg-transparent px-16 pb-16 pt-5 
     md:flex-wrap md:justify-center"
-    >
+    > 
+    {/* testing */}
       <div className="flex w-2/5 flex-col md:w-full">
         <div className="text-4xl">We Are Chinese Youth Church</div>
         <div
