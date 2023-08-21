@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Website MVP</title>
+        <title>MPV WEBSITE</title>
         <meta name="description" content="Just a MVP for CYC website" />
         <link rel="icon" href="/images/cyc_logo.png" />
       </Head>
