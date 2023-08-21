@@ -3,18 +3,25 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Roboto';
-    src: url('/fonts/Roboto-Regular.ttf');
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf");
 }
 
-:root{
-    font-family: Roboto;
-    color: white;
-    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+:root {
+  font-family: Roboto;
+  color: white;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 
 .mySwiper {
-    --swiper-pagination-color: #537895;
-    --swiper-pagination-bullet-inactive-color: white;
-    --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-color: #537895;
+  --swiper-pagination-bullet-inactive-color: white;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }

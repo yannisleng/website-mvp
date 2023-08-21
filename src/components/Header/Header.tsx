@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import Navigation from "../Navigation/Navigation";
-import { api } from "~/utils/api";
 
 const CYCLogo: React.FC = () => {
   return (
@@ -44,14 +43,41 @@ const SearchBar: React.FC = () => {
 
 const LoginButton: React.FC = () => {
   const { data: sessionData } = useSession();
-  
+
   return (
     <img
-      src={sessionData?.user?.image ?? "/icons/login.svg"}
+      src={sessionData?.user?.image ?? "/icons/user.svg"}
       alt={sessionData ? "Profile Picture" : "Login Icon"}
-      className="ml-5 h-7 w-7 cursor-pointer rounded-full"
+      className="ml-5 h-8 w-8 cursor-pointer rounded-full md:hidden"
       onClick={sessionData ? () => void signOut() : () => void signIn()}
     />
+  );
+};
+
+const SideNavigation: React.FC = () => {
+  const [isCrossIcon, setIsCrossIcon] = useState(false);
+
+  const toggleIcon = () => {
+    setIsCrossIcon((prevIsCrossIcon) => !prevIsCrossIcon);
+  };
+
+  return (
+    <>
+      <img
+        src={isCrossIcon ? "/icons/cross.svg" : "/icons/navigation.svg"}
+        alt={isCrossIcon ? "Close Icon" : "Navigation Icon"}
+        className="ml-5 hidden h-7 w-7 cursor-pointer md:block"
+        onClick={toggleIcon}
+      />
+      {isCrossIcon && (
+        <div
+          className="glass absolute left-0 top-[90px] w-screen bg-white"
+          style={{ height: "calc(100vh - 90px)" }}
+        >
+          <Navigation handleClose={toggleIcon} />
+        </div>
+      )}
+    </>
   );
 };
 
@@ -96,11 +122,12 @@ export default function Header() {
     >
       <div className="flex items-center">
         <CYCLogo />
-        {(isTop || hovered) && <Navigation />}
+        {(isTop || hovered) && <Navigation mdDisplay={false} />}
       </div>
-      <div className="flex">
+      <div className="flex items-center">
         <SearchBar />
         <LoginButton />
+        <SideNavigation />
       </div>
     </div>
   );

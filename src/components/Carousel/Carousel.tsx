@@ -26,12 +26,15 @@ export default function Carousel() {
         }}
         modules={[Autoplay, Pagination]}
         className="mySwiper w-full"
-        style={{ height: "calc(100vh - 90px)" }}
       >
         {images.map((image, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={image} className="mx-auto max-h-full max-w-full"  />
+              <img
+                src={image}
+                className="mx-auto max-w-full"
+                style={{ maxHeight: "calc(100vh - 90px)" }}
+              />
             </SwiperSlide>
           );
         })}
