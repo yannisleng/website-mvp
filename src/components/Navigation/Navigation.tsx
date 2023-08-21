@@ -9,8 +9,9 @@ const LoginButton: React.FC = () => {
   return (
     <button
       className={`duration-250 hidden px-5 pb-8 text-lg transition-all 
-            hover:border-b-4 md:block md:border-[#09203f] md:py-8 
-            md:text-3xl md:font-bold md:text-[#09203f] md:transition-none`}
+            hover:border-b-4 md:block 
+            md:hover:border-0 md:text-3xl md:font-bold 
+           md:hover:text-[#537895] md:text-[#09203f]`}
       onClick={sessionData ? () => void signOut() : () => void signIn()}
     >
       {sessionData ? "Logout" : "Login"}
@@ -33,7 +34,7 @@ export default function Navigation({
   return (
     <div
       className={
-        mdDisplay ? "md:mt-12 md:flex md:flex-col md:items-center" : "md:hidden"
+        mdDisplay ? "md:flex md:flex-col md:items-center" : "md:hidden"
       }
     >
       <LoginButton />
@@ -48,8 +49,8 @@ export default function Navigation({
                 ? "border-b-4"
                 : ""
             }
-            md:border-[#09203f] md:py-8 md:text-3xl md:font-bold 
-            md:text-[#09203f] md:transition-none`}
+             md:hover:border-0 md:text-3xl md:font-bold 
+            md:hover:text-[#537895] md:text-[#09203f]`}
             onClick={handleClose}
           >
             {route}

@@ -71,7 +71,8 @@ const SideNavigation: React.FC = () => {
       />
       {isCrossIcon && (
         <div
-          className="glass absolute left-0 top-[90px] w-screen bg-white"
+          className="glass absolute left-0 top-[90px] w-screen bg-white
+          flex items-center justify-center"
           style={{ height: "calc(100vh - 90px)" }}
         >
           <Navigation handleClose={toggleIcon} />
