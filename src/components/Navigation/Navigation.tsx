@@ -10,8 +10,8 @@ const LoginButton: React.FC = () => {
     <button
       className={`duration-250 hidden px-5 pb-8 text-lg transition-all 
             hover:border-b-4 md:block 
-            md:hover:border-0 md:text-3xl md:font-bold 
-           md:hover:text-[#537895] md:text-[#09203f]`}
+            md:text-3xl md:font-bold md:text-[#09203f] 
+           md:hover:border-0 md:hover:text-[#537895]`}
       onClick={sessionData ? () => void signOut() : () => void signIn()}
     >
       {sessionData ? "Logout" : "Login"}
@@ -45,12 +45,13 @@ export default function Navigation({
             href={`/${route.toLowerCase().replace(/\s/g, "")}`}
             className={`duration-250 px-5 pb-8 text-lg transition-all hover:border-b-4 
             ${
+              !mdDisplay &&
               router.pathname === `/${route.toLowerCase().replace(/\s/g, "")}`
                 ? "border-b-4"
                 : ""
             }
-             md:hover:border-0 md:text-3xl md:font-bold 
-            md:hover:text-[#537895] md:text-[#09203f]`}
+             md:text-3xl md:font-bold md:text-[#09203f] 
+            md:hover:border-0 md:hover:text-[#537895]`}
             onClick={handleClose}
           >
             {route}
