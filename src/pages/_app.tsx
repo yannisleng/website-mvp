@@ -5,6 +5,7 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import Layout from "~/components/layout";
 import Head from "next/head";
+import { NextUIProvider } from "@nextui-org/react";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,14 +13,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Layout>
-        <Head>
-          <title>Website MVP</title>
-          <meta name="description" content="Just a MVP for CYC website" />
-          <link rel="icon" href="/images/cyc_logo.png" />
-        </Head>
-        <Component {...pageProps} />
-      </Layout>
+      <NextUIProvider>
+        <Layout>
+          <Head>
+            <title>Website MVP</title>
+            <meta name="description" content="Just a MVP for CYC website" />
+            <link rel="icon" href="/images/cyc_logo.png" />
+          </Head>
+          <Component {...pageProps} />
+        </Layout>
+      </NextUIProvider>
     </SessionProvider>
   );
 };
