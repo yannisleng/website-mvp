@@ -20,7 +20,7 @@ export default function connect() {
     <>
       <div className="mb-8 mt-8 flex flex-col items-center">
         {options.map((opt, index) => {
-          return <Action title={opt.title} url={opt.url}></Action>;
+          return <Action key={index} title={opt.title} url={opt.url} />;
         })}
       </div>
     </>
