@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
 
-export default function Action(props: any) {
+interface ActionProps {
+  title: string;
+  url: string;
+}
+
+export default function Action(props: ActionProps) {
   return (
     <>
       <div className="relative mb-8 mt-8 flex w-2/3 items-center rounded-lg bg-white text-black">
