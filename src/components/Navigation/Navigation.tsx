@@ -29,7 +29,7 @@ export default function Navigation({
   handleClose,
 }: NavigationProps) {
   const router = useRouter();
-  const routes = ["About", "Media", "Contact", "Connect"];
+  const routes = ["About", "Media", "Contact", "Connect", "Location"];
 
   return (
     <div
