@@ -8,6 +8,7 @@ import {
   CardBody,
   Link,
 } from "@nextui-org/react";
+import Image from "next/image";
 
 interface Give {
   bank: string;
@@ -37,7 +38,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
-  let tabs = [
+  const tabs = [
     {
       label: "Church",
       content: items.address,
@@ -76,7 +77,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
           <div>{items.give.bank}</div>
           <div>{items.give.name}</div>
           <div>{items.give.acc_no}</div>
-          <img src={items.give.qr} alt="QR Code" />
+          <Image src={items.give.qr} alt="QR Code" width={296} height={296} />
         </>
       ),
     },
@@ -85,7 +86,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
   return (
     <div className="flex w-full flex-col">
       <Tabs items={tabs}>
-        {tabs.map((tab, index) => {
+        {tabs.map((tab) => {
           return (
             <Tab key={tab.label.toLowerCase()} title={tab.label}>
               <Card className="w-[281px]">
@@ -284,7 +285,7 @@ export default function Location() {
                   return (
                     <div
                       key={index}
-                      className="mr-7 flex flex-col lg:mb-7"
+                      className="mr-7 flex flex-col lg:mr-0 lg:mb-7"
                     >
                       <div className="mb-3">{service.name}</div>
                       <ServiceCard items={service} />
