@@ -5,15 +5,15 @@ export default function connect() {
   const options = [
     {
       title: "参与小组",
-      url: "To be develop",
+      url: "cg",
     },
     {
       title: "参与服事",
-      url: "To be develop",
+      url: "ministry",
     },
     {
       title: "洗礼",
-      url: "To be develop",
+      url: "baptism",
     },
   ];
   return (
