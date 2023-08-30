@@ -9,6 +9,7 @@ import {
   Link,
 } from "@nextui-org/react";
 import Image from "next/image";
+import Image from "next/image";
 
 interface Give {
   bank: string;
@@ -39,6 +40,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
+  const tabs = [
   const tabs = [
     {
       label: "Church",
