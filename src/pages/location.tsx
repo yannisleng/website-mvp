@@ -8,6 +8,7 @@ import {
   CardBody,
   Link,
 } from "@nextui-org/react";
+import Image from "next/image";
 
 interface Give {
   bank: string;
@@ -19,6 +20,7 @@ interface Give {
 interface Service {
   name: string;
   address: string;
+  mapUrl: string;
   contact: string;
   email: string;
   time: string;
@@ -37,18 +39,29 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
-  let tabs = [
+  const tabs = [
     {
       label: "Church",
-      content: items.address,
+      content: (
+        <>
+          <div>{items.address}</div>
+          <iframe
+            src={items.mapUrl}
+            width="200"
+            height="200"
+            style={{ border: 0, margin: "10px auto" }}
+            loading="lazy"
+          ></iframe>
+        </>
+      ),
     },
     {
       label: "Office",
       content: (
         <>
           <div>{items.address}</div>
-          <div>{items.contact}</div>
-          <div>{items.email}</div>
+          <div className="mt-2">{items.contact}</div>
+          <div className="mt-2">{items.email}</div>
         </>
       ),
     },
@@ -57,12 +70,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
       content: (
         <>
           <div>{items.time}</div>
-          <div>{items.venue}</div>
+          <div className="mt-2">{items.venue}</div>
           <Link
             size="sm"
             isExternal
             href={items.youtube}
             showAnchorIcon
+            className="mt-2"
           >
             YouTube Channel
           </Link>
@@ -74,9 +88,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
       content: (
         <>
           <div>{items.give.bank}</div>
-          <div>{items.give.name}</div>
-          <div>{items.give.acc_no}</div>
-          <img src={items.give.qr} alt="QR Code" />
+          <div className="mt-2">{items.give.name}</div>
+          <div className="mt-2">{items.give.acc_no}</div>
+          <Image
+            src={items.give.qr}
+            alt="QR Code"
+            width={296}
+            height={296}
+            className="mt-2"
+          />
         </>
       ),
     },
@@ -84,8 +104,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ items }) => {
 
   return (
     <div className="flex w-full flex-col">
-      <Tabs items={tabs}>
-        {tabs.map((tab, index) => {
+      <Tabs items={tabs} color="primary">
+        {tabs.map((tab) => {
           return (
             <Tab key={tab.label.toLowerCase()} title={tab.label}>
               <Card className="w-[281px]">
@@ -108,9 +128,11 @@ export default function Location() {
           name: "Young Warrior",
           address:
             "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
           contact: "012-3456789",
           email: "fgacyc.official@gmail.com",
-          time: "Saterday 3:00pm",
+          time: "Saturday 3:00pm",
           venue: "L5",
           give: {
             bank: "Maybank",
@@ -118,15 +140,17 @@ export default function Location() {
             acc_no: "0-14011-230146",
             qr: "/icons/qr.svg",
           },
-          youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          youtube: "https://www.youtube.com/@fgacyc",
         },
         {
           name: "General Service 1",
           address:
             "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
           contact: "012-3456789",
           email: "fgacyc.official@gmail.com",
-          time: "Saterday 5:30pm",
+          time: "Saturday 5:30pm",
           venue: "L5",
           give: {
             bank: "Maybank",
@@ -134,12 +158,14 @@ export default function Location() {
             acc_no: "0-14011-230146",
             qr: "/icons/qr.svg",
           },
-          youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          youtube: "https://www.youtube.com/@fgacyc",
         },
         {
           name: "General Service 2",
           address:
             "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
           contact: "012-3456789",
           email: "fgacyc.official@gmail.com",
           time: "Sunday 1:30pm",
@@ -150,7 +176,7 @@ export default function Location() {
             acc_no: "0-14011-230146",
             qr: "/icons/qr.svg",
           },
-          youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          youtube: "https://www.youtube.com/@fgacyc",
         },
       ],
     },
@@ -158,105 +184,115 @@ export default function Location() {
       name: "Kepong",
       serviceTime: [
         {
-            name: "General Service",
-            address:
-              "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
-            contact: "012-3456789",
-            email: "fgacyc.official@gmail.com",
-            time: "Saterday 5:30pm",
-            venue: "L5",
-            give: {
-              bank: "Maybank",
-              name: "Full Gospel Assembly Berhad",
-              acc_no: "0-14011-230146",
-              qr: "/icons/qr.svg",
-            },
-            youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          name: "General Service",
+          address:
+            "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
+          contact: "012-3456789",
+          email: "fgacyc.official@gmail.com",
+          time: "Saturday 5:30pm",
+          venue: "L5",
+          give: {
+            bank: "Maybank",
+            name: "Full Gospel Assembly Berhad",
+            acc_no: "0-14011-230146",
+            qr: "/icons/qr.svg",
           },
+          youtube: "https://www.youtube.com/@fgacyc",
+        },
       ],
     },
     {
       name: "Seremban",
       serviceTime: [
         {
-            name: "General Service",
-            address:
-              "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
-            contact: "012-3456789",
-            email: "fgacyc.official@gmail.com",
-            time: "Saterday 5:30pm",
-            venue: "L5",
-            give: {
-              bank: "Maybank",
-              name: "Full Gospel Assembly Berhad",
-              acc_no: "0-14011-230146",
-              qr: "/icons/qr.svg",
-            },
-            youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          name: "General Service",
+          address:
+            "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
+          contact: "012-3456789",
+          email: "fgacyc.official@gmail.com",
+          time: "Saturday 5:30pm",
+          venue: "L5",
+          give: {
+            bank: "Maybank",
+            name: "Full Gospel Assembly Berhad",
+            acc_no: "0-14011-230146",
+            qr: "/icons/qr.svg",
           },
+          youtube: "https://www.youtube.com/@fgacyc",
+        },
       ],
     },
     {
       name: "Setapak",
       serviceTime: [
         {
-            name: "General Service",
-            address:
-              "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
-            contact: "012-3456789",
-            email: "fgacyc.official@gmail.com",
-            time: "Saterday 5:30pm",
-            venue: "L5",
-            give: {
-              bank: "Maybank",
-              name: "Full Gospel Assembly Berhad",
-              acc_no: "0-14011-230146",
-              qr: "/icons/qr.svg",
-            },
-            youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          name: "General Service",
+          address:
+            "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
+          contact: "012-3456789",
+          email: "fgacyc.official@gmail.com",
+          time: "Saturday 5:30pm",
+          venue: "L5",
+          give: {
+            bank: "Maybank",
+            name: "Full Gospel Assembly Berhad",
+            acc_no: "0-14011-230146",
+            qr: "/icons/qr.svg",
           },
+          youtube: "https://www.youtube.com/@fgacyc",
+        },
       ],
     },
     {
       name: "Sungai Long",
       serviceTime: [
         {
-            name: "General Service",
-            address:
-              "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
-            contact: "012-3456789",
-            email: "fgacyc.official@gmail.com",
-            time: "Saterday 5:30pm",
-            venue: "L5",
-            give: {
-              bank: "Maybank",
-              name: "Full Gospel Assembly Berhad",
-              acc_no: "0-14011-230146",
-              qr: "/icons/qr.svg",
-            },
-            youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          name: "General Service",
+          address:
+            "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
+          contact: "012-3456789",
+          email: "fgacyc.official@gmail.com",
+          time: "Saturday 5:30pm",
+          venue: "L5",
+          give: {
+            bank: "Maybank",
+            name: "Full Gospel Assembly Berhad",
+            acc_no: "0-14011-230146",
+            qr: "/icons/qr.svg",
           },
+          youtube: "https://www.youtube.com/@fgacyc",
+        },
       ],
     },
     {
       name: "USJ",
       serviceTime: [
         {
-            name: "General Service",
-            address:
-              "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
-            contact: "012-3456789",
-            email: "fgacyc.official@gmail.com",
-            time: "Saterday 5:30pm",
-            venue: "L5",
-            give: {
-              bank: "Maybank",
-              name: "Full Gospel Assembly Berhad",
-              acc_no: "0-14011-230146",
-              qr: "/icons/qr.svg",
-            },
-            youtube: "https://www.youtube.com/channel/UC9Q4Q4Z0Z0YX6Z9Z3Z2Z9ZQ",
+          name: "General Service",
+          address:
+            "No. 1, Jalan 1/116B, Kuchai Entrepreneurs Park, Off Jalan Kuchai Lama, 58200 Kuala Lumpur",
+          mapUrl:
+            "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3984.0155340709653!2d101.6739822!3d3.0905232!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4a471b85a537%3A0x22b578184c5280ab!2sFGA%20Chinese%20Youth%20Church%20(FGA%20CYC)!5e0!3m2!1sen!2smy!4v1693384531044!5m2!1sen!2smy",
+          contact: "012-3456789",
+          email: "fgacyc.official@gmail.com",
+          time: "Saturday 5:30pm",
+          venue: "L5",
+          give: {
+            bank: "Maybank",
+            name: "Full Gospel Assembly Berhad",
+            acc_no: "0-14011-230146",
+            qr: "/icons/qr.svg",
           },
+          youtube: "https://www.youtube.com/@fgacyc",
+        },
       ],
     },
   ];
@@ -277,16 +313,16 @@ export default function Location() {
               key={index}
               aria-label={location.name}
               title={location.name}
-              className="text-black font-semibold"
+              className="font-semibold text-black"
             >
-              <div className="flex lg:flex-col lg:items-center font-normal">
+              <div className="flex font-normal lg:flex-col lg:items-center">
                 {location.serviceTime.map((service, index) => {
                   return (
                     <div
                       key={index}
-                      className="mr-7 flex flex-col lg:mb-7"
+                      className="mr-7 flex flex-col items-center lg:mb-7 lg:mr-0"
                     >
-                      <div className="mb-3">{service.name}</div>
+                      <div className="mb-5 font-semibold text-[#09203f]">{service.name}</div>
                       <ServiceCard items={service} />
                     </div>
                   );

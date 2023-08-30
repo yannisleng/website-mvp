@@ -16,6 +16,19 @@ export default {
       sm: { max: "639px" },
     },
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: "#537895",
+              foreground: "#ffffff",
+            },
+          },
+        },
+      },
+    }),
+  ],
   darkMode: "class",
 } satisfies Config;
