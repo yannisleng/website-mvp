@@ -8,7 +8,7 @@ const LoginButton: React.FC = () => {
 
   return (
     <button
-      className={`duration-250 hidden px-5 pb-8 text-lg transition-all 
+      className={`hidden px-5 pb-8 text-lg transition-all duration-250 
             hover:border-b-4 md:block 
             md:text-3xl md:font-bold md:text-[#09203f] 
            md:hover:border-0 md:hover:text-[#537895]`}
@@ -29,7 +29,7 @@ export default function Navigation({
   handleClose,
 }: NavigationProps) {
   const router = useRouter();
-  const routes = ["About", "Media", "Contact", "Connect", "Location"];
+  const routes = ["About", "Media", "Contact", "Connect", "Location", "Music"];
 
   return (
     <div
@@ -43,7 +43,7 @@ export default function Navigation({
           <Link
             key={index}
             href={`/${route.toLowerCase().replace(/\s/g, "")}`}
-            className={`duration-250 px-5 pb-8 text-lg transition-all hover:border-b-4 
+            className={`px-5 pb-8 text-lg transition-all duration-250 hover:border-b-4 
             ${
               !mdDisplay &&
               router.pathname === `/${route.toLowerCase().replace(/\s/g, "")}`
